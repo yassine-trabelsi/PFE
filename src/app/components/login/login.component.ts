@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
         })
     } else {
       this.validateAllFormFields(this.loginForm);
-      //alert("Formulaire invalide")
+      alert("Formulaire invalide")
     }
   }
 
