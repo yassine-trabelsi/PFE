@@ -32,8 +32,8 @@
                                 <a id="forget" data-bs-toggle="modal" data-bs-target="#exampleModal"
                                     class="font-weight-bold">Mot de passe oublié ?</a>
                             </div>
-                            <button (click)="onLogin()" type="submit"
-                                class="btn btn-primary btn-block mt-4 w-100">S’identifier</button>
+                            <button (click)="onLogin()" type="submit" class="btn btn-block mt-4 w-100"
+                                style="background-color: #51BAEC; color:white;">S’identifier</button>
                         </form>
                     </div>
                 </div>
@@ -55,13 +55,15 @@
             </div>
             <div class="modal-body">
                 <div class="form-group pt-3">
-                    <div class="input-field"><span class="fa fa-user p-2"></span><input type="text" placeholder="Email">
+                    <div class="input-field"><span class="fa fa-user p-2"></span><input [(ngModel)]="resetPasswordEmail"
+                            type="text" placeholder="E-mail">
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button id="closeBtn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                <button type="button" (click)="confirmToSend()" class="btn btn-primary">Envoyer</button>
+                <button type="button" (click)="confirmToSend()" class="btn"
+                    style="background-color:#51BAEC;">Envoyer</button>
             </div>
         </div>
     </div>
