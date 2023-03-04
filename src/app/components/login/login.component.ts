@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
           next: (res) => {
             //alert(res.message)
             this.loginForm.reset();
+            this.auth.storeToken(res.token);
             this.router.navigate(['home']);
           },
           error: (err) => {
@@ -58,5 +59,9 @@ export class LoginComponent implements OnInit {
         this.validateAllFormFields(control)
       }
     })
+  }
+  confirmToSend() {
+    const buttonRef = document.getElementById("closeBtn");
+    buttonRef?.click();
   }
 }

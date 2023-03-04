@@ -1,4 +1,7 @@
+import { ApiService } from './../../services/api.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  public users: any = [];
+  constructor(private router: Router, private auth: AuthService, private api: ApiService) { }
 
   ngOnInit(): void {
   }
 
+  logOut() {
+    this.auth.signOut();
+  }
 }
