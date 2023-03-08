@@ -10,13 +10,15 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { ResetComponent } from './components/reset/reset.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    ResetComponent
+    ResetComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,4 @@
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { ResetComponent } from './components/reset/reset.component';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './components/home/home.component';
@@ -7,6 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
+  { path: 'edit-profile/:id', component: EditProfileComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'reset', component: ResetComponent }
 ];
