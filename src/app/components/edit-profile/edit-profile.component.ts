@@ -29,6 +29,7 @@ export class EditProfileComponent implements OnInit {
         prenom: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         motDePasse: ['', Validators.required],
+        matricule: ['', Validators.required],
         tel: ['', Validators.required],
       });
 
@@ -38,6 +39,7 @@ export class EditProfileComponent implements OnInit {
           prenom: data.prenom,
           email: data.email,
           motDePasse: data.motDePasse,
+          matricule: data.matricule,
           tel: data.tel
         });
       });
@@ -51,7 +53,7 @@ export class EditProfileComponent implements OnInit {
   onSubmit(): void {
     this.userService.editUser(this.id, this.profileForm.value).subscribe(
       res => {
-        console.log('Profile updated successfully');
+        alert('Profile updated successfully');
         this.router.navigate(['/edit-profile', this.id]);
       },
       error => {
