@@ -30,7 +30,6 @@ export class EditProfileComponent implements OnInit {
         email: ['', [Validators.required, Validators.email]],
         motDePasse: ['', Validators.required],
         tel: ['', Validators.required],
-        dateNaissance: ['', Validators.required]
       });
 
       this.userService.getUser(this.id).subscribe(data => {
@@ -39,8 +38,7 @@ export class EditProfileComponent implements OnInit {
           prenom: data.prenom,
           email: data.email,
           motDePasse: data.motDePasse,
-          tel: data.tel,
-          dateNaissance: data.dateNaissance
+          tel: data.tel
         });
       });
     });
