@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -12,6 +13,13 @@ export class EditProfileComponent implements OnInit {
 
   profileForm!: FormGroup;
   id!: number;
+  public users: any = [];
+  private jwtHelper = new JwtHelperService();
+  public prenom: string = '';
+  public matricule: string = '';
+  public tel: string = '';
+  public role: string = '';
+  public email: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -31,6 +39,7 @@ export class EditProfileComponent implements OnInit {
         motDePasse: ['', Validators.required],
         matricule: ['', Validators.required],
         tel: ['', Validators.required],
+        role: ['', Validators.required],
       });
 
       this.userService.getUser(this.id).subscribe(data => {
@@ -40,10 +49,22 @@ export class EditProfileComponent implements OnInit {
           email: data.email,
           motDePasse: data.motDePasse,
           matricule: data.matricule,
-          tel: data.tel
+          tel: data.tel,
+          role: data.role,
         });
       });
     });
+
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      this.id = decodedToken.nameid;
+      this.prenom = decodedToken.unique_name;
+      this.matricule = decodedToken.family_name;
+      this.tel = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/mobilephone'];
+      this.role = decodedToken.role;
+      this.email = decodedToken.email;
+    }
   }
 
   home() {
@@ -54,7 +75,7 @@ export class EditProfileComponent implements OnInit {
     this.userService.editUser(this.id, this.profileForm.value).subscribe(
       res => {
         alert('Profile updated successfully');
-        this.router.navigate(['/edit-profile', this.id]);
+        this.router.navigate(['/profile', this.id]);
       },
       error => {
         console.log(error);

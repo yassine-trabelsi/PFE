@@ -6,7 +6,7 @@ import { ResetPassword } from '../models/reset-password.model';
   providedIn: 'root'
 })
 export class ResetPasswordService {
-  private baseUrl: string = "https://localhost:44347/api/Utilisateur/"
+  private baseUrl: string = "https://localhost:44347/api/Login/"
   constructor(private http: HttpClient) { }
 
   sendResetPasswordLink(email: string) {

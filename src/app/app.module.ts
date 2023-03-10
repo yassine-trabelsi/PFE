@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { ResetComponent } from './components/reset/reset.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
     LoginComponent,
     HomeComponent,
     ResetComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

@@ -7,8 +7,9 @@ import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'edit-profile/:id', component: EditProfileComponent, canActivate: [AuthGuard] },
+  { path: 'profile/:id', component: EditProfileComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'reset', component: ResetComponent }
 ];
