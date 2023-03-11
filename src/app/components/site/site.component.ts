@@ -1,36 +1,71 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { Site } from 'src/app/models/site.model';
+import { SiteService } from 'src/app/services/site.service';
 
-@Injectable({
-  providedIn: 'root'
+
+@Component({
+  selector: 'app-site',
+  templateUrl: './site.component.html',
+  styleUrls: ['./site.component.scss']
 })
-export class SiteService {
-  private apiUrl = 'https://localhost:44347/api/Site/';
+export class SiteComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  sites!: Site[];
+  site: Site = new Site();
+  isEditMode = false;
+  isAddMode = false;
 
-  getSites(): Observable<Site[]> {
-    return this.http.get<Site[]>(this.apiUrl);
+  constructor(private siteService: SiteService) { }
+
+  ngOnInit() {
+    this.getSites();
   }
 
-  getSite(id: number): Observable<Site> {
-    const url = `${this.apiUrl}${id}`;
-    return this.http.get<Site>(url);
+  getSites(): void {
+    this.siteService.getSites()
+      .subscribe(sites => this.sites = sites);
   }
 
-  addSite(site: Site): Observable<Site> {
-    return this.http.post<Site>(this.apiUrl, site);
+  deleteSite(site: Site): void {
+    if (confirm(`Etes-vous sûr que vous voulez supprimer Site : ${site.site}?`)) {
+      this.siteService.deleteSite(site.id).subscribe(() => {
+        const index = this.sites.findIndex(u => u.id === site.id);
+        this.sites.splice(index, 1);
+      });
+    }
   }
 
-  updateSite(site: Site): Observable<any> {
-    const url = `${this.apiUrl}${site.id}`;
-    return this.http.put(url, site);
+  addSite(site: Site): void {
+    this.siteService.addSite(site)
+      .subscribe(site => {
+        this.sites.push(site);
+      });
+    this.isAddMode = false;
   }
 
-  deleteSite(id: number): Observable<any> {
-    const url = `${this.apiUrl}${id}`;
-    return this.http.delete(url);
+  editSite(site: Site): void {
+    this.site = { ...site };
+    this.isEditMode = true;
+    this.isAddMode = false;
+  }
+
+  updateSite(): void {
+    this.siteService.updateSite(this.site)
+      .subscribe(() => {
+        const index = this.sites.findIndex(s => s.id === this.site.id);
+        this.sites[index] = this.site;
+        this.site = new Site();
+        this.isEditMode = false;
+      });
+  }
+
+  showAddForm() {
+    this.isAddMode = true;
+    this.isEditMode = false;
+  }
+
+  cancelEdit(): void {
+    this.isEditMode = false;
   }
 }
+

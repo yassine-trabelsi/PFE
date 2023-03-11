@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ResetComponent } from './components/reset/reset.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { SiteComponent } from './components/site/site.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     HomeComponent,
     ResetComponent,
     EditProfileComponent,
-    NavbarComponent
+    NavbarComponent,
+    SiteComponent
   ],
   imports: [
     BrowserModule,

@@ -8,7 +8,7 @@ import { Site } from '../models/site.model';
 })
 export class SiteService {
 
-  private apiUrl = 'https://localhost:44347/api/Site/';
+  private apiUrl = 'https://localhost:44347/api/Site';
 
   constructor(private http: HttpClient) { }
 

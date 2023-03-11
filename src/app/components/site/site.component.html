@@ -1,1 +1,83 @@
-<p>site works!</p>
+<div class="container">
+    <div class="row">
+        <h2>Listes des Sites</h2>
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-primary" (click)="showAddForm()" style="margin-left: 500px;">Ajouter un
+                    Site</button>
+            </div>
+        </div>
+        <table class="table table-striped" style="width: 800px;">
+            <thead>
+                <tr>
+                    <!-- <th>ID</th> -->
+                    <th>Site</th>
+                    <th>Adresse</th>
+                    <th>Tel</th>
+                    <th>Fax</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let site of sites">
+                    <!--  <td>{{site.id}}</td> -->
+                    <td>{{site.site}}</td>
+                    <td>{{site.adresse}}</td>
+                    <td>{{site.tel}}</td>
+                    <td>{{site.fax}}</td>
+                    <td>
+                        <button class="btn btn-primary" (click)="editSite(site)">Modifier</button>
+                        <button class="btn btn-danger" (click)="deleteSite(site)"
+                            style="margin-left: 5px;">Supprimer</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div *ngIf="isAddMode" class="row">
+            <h2>Ajouter un Site</h2>
+            <form (ngSubmit)="addSite(f.value)" #f="ngForm">
+                <div class="form-group">
+                    <label for="site">Site</label>
+                    <input type="text" class="form-control" id="site" name="site" ngModel required>
+                </div>
+                <div class="form-group">
+                    <label for="adresse">Adresse</label>
+                    <input type="text" class="form-control" id="adresse" name="adresse" ngModel required>
+                </div>
+                <div class="form-group">
+                    <label for="tel">Tel</label>
+                    <input type="text" class="form-control" id="tel" name="tel" ngModel required>
+                </div>
+                <div class="form-group">
+                    <label for="fax">Fax</label>
+                    <input type="text" class="form-control" id="fax" name="fax" ngModel required>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <div *ngIf="isEditMode" class="row">
+            <h2>Edit Site</h2>
+            <form *ngIf="isEditMode" (ngSubmit)="updateSite()" #f="ngForm">
+                <div class="form-group">
+                    <label for="site">Site</label>
+                    <input type="text" class="form-control" id="site" name="site" [(ngModel)]="site.site" required>
+                </div>
+                <div class="form-group">
+                    <label for="adresse">Adresse</label>
+                    <input type="text" class="form-control" id="adresse" name="adresse" [(ngModel)]="site.adresse"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="tel">Tel</label>
+                    <input type="text" class="form-control" id="tel" name="tel" [(ngModel)]="site.tel" required>
+                </div>
+                <div class="form-group">
+                    <label for="fax">Fax</label>
+                    <input type="text" class="form-control" id="fax" name="fax" [(ngModel)]="site.fax" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                <button class="btn btn-danger" (click)="cancelEdit()">Annuler</button>
+            </form>
+        </div>
+    </div>
+</div>

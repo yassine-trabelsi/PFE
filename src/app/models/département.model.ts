@@ -7,5 +7,5 @@ export class Département {
     chefD: string = '';
     utilisateurs: Utilisateur[] = [];
     siteId: number = 0;
-    site: Site = new Site(0, '', '', '', '', []);
+    site: Site = new Site();
 }
