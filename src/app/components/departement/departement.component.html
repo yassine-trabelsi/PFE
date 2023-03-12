@@ -1,0 +1,84 @@
+<div class="container">
+    <div class="row">
+        <h2>Liste des Départements</h2>
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-primary" (click)="showAddForm()" style="margin-left: 500px;">Ajouter un
+                    Département</button>
+            </div>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <!-- <th>ID</th> -->
+                    <th>Nom</th>
+                    <th>Chef de département</th>
+                    <th>Site</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let departement of departements">
+                    <!--  <td>{{departement.id}}</td> -->
+                    <td>{{departement.nom}}</td>
+                    <td>{{departement.chefD}}</td>
+                    <td>{{ getSiteNom(departement.siteId) }}</td>
+                    <td>
+                        <button class="btn btn-primary" (click)="editDepartement(departement)">Modifier</button>
+                        <button class="btn btn-danger" (click)="deleteDepartement(departement)"
+                            style="margin-left: 5px;">Supprimer</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div *ngIf="isAddMode" class="row">
+            <h2>Ajouter un Département</h2>
+            <form #f="ngForm" (ngSubmit)="addDepartement(f.value)">
+                <div class="form-group">
+                    <label for="nom">Nom</label>
+                    <input type="text" class="form-control" id="nom" name="nom" ngModel required>
+                </div>
+                <div class="form-group">
+                    <label for="chefD">Chef de département</label>
+                    <input type="text" class="form-control" id="chefD" name="chefD" ngModel required>
+                </div>
+                <div class="form-group">
+                    <label for="site">Site</label>
+                    <select class="form-control" id="site" name="siteId" ngModel required>
+                        <option *ngFor="let site of sites" [value]="site.id">{{site.site}}</option>
+                    </select>
+                </div>
+                <div style="margin-top: 10px;">
+                    <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Enregistrer</button>
+                    <button type="button" class="btn btn-default" (click)="cancelEdit()"
+                        style="margin-left: 5px;">Annuler</button>
+                </div>
+            </form>
+        </div>
+        <div *ngIf="isEditMode" class="row">
+            <h2>Modifier un Département</h2>
+            <form #f="ngForm" (ngSubmit)="updateDepartement()">
+                <div class="form-group">
+                    <label for="nom">Nom</label>
+                    <input type="text" class="form-control" id="nom" name="nom" [(ngModel)]="departement.nom" required>
+                </div>
+                <div class="form-group">
+                    <label for="chefD">Chef de département</label>
+                    <input type="text" class="form-control" id="chefD" name="chefD" [(ngModel)]="departement.chefD"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="site">Site</label>
+                    <select class="form-control" id="site" name="siteId" [(ngModel)]="departement.siteId" required>
+                        <option *ngFor="let site of sites" [value]="site.id">{{site.site}}</option>
+                    </select>
+                </div>
+                <div style="margin-top: 10px;">
+                    <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Enregistrer</button>
+                    <button type="button" class="btn btn-default" (click)="cancelEdit()"
+                        style="margin-left: 5px;">Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

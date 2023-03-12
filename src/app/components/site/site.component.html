@@ -7,7 +7,7 @@
                     Site</button>
             </div>
         </div>
-        <table class="table table-striped" style="width: 800px;">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <!-- <th>ID</th> -->
@@ -52,7 +52,10 @@
                     <label for="fax">Fax</label>
                     <input type="text" class="form-control" id="fax" name="fax" ngModel required>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <div style="margin-top: 10px;">
+                    <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Enregistrer</button>
+                    <button class="btn btn-danger" (click)="cancelEdit()" style="margin-left: 5px;">Annuler</button>
+                </div>
             </form>
         </div>
         <div *ngIf="isEditMode" class="row">
@@ -75,8 +78,10 @@
                     <label for="fax">Fax</label>
                     <input type="text" class="form-control" id="fax" name="fax" [(ngModel)]="site.fax" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Enregistrer</button>
-                <button class="btn btn-danger" (click)="cancelEdit()">Annuler</button>
+                <div style="margin-top: 10px;">
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    <button class="btn btn-danger" (click)="cancelEdit()" style="margin-left: 5px;">Annuler</button>
+                </div>
             </form>
         </div>
     </div>

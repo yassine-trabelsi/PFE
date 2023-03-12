@@ -1,4 +1,4 @@
-import { Département } from "./département.model";
+import { Departement } from "./departement.model";
 
 export class Site {
     public id: number = 0;
@@ -6,5 +6,5 @@ export class Site {
     public adresse: string = '';
     public tel: string = '';
     public fax: string = '';
-    public départements: Département[] = [];
+    public departements: Departement[] = [];
 }

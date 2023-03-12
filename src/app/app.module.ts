@@ -13,6 +13,7 @@ import { ResetComponent } from './components/reset/reset.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SiteComponent } from './components/site/site.component';
+import { DepartementComponent } from './components/departement/departement.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SiteComponent } from './components/site/site.component';
     ResetComponent,
     EditProfileComponent,
     NavbarComponent,
-    SiteComponent
+    SiteComponent,
+    DepartementComponent,
   ],
   imports: [
     BrowserModule,

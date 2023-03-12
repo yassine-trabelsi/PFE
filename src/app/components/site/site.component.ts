@@ -66,6 +66,7 @@ export class SiteComponent implements OnInit {
 
   cancelEdit(): void {
     this.isEditMode = false;
+    this.isAddMode = false;
   }
 }
 
