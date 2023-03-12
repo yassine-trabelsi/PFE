@@ -9,6 +9,7 @@ export class AuthService {
 
   private baseUrl: string = "https://localhost:44347/api/Login/"
   constructor(private http: HttpClient, private router: Router) { }
+
   login(utilisateurObj: any) {
     return this.http.post<any>(`${this.baseUrl}authenticate`, utilisateurObj);
   }

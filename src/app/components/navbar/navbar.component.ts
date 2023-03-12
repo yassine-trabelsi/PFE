@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -17,7 +16,7 @@ export class NavbarComponent implements OnInit {
   private id: string = '';
   public prenom: string = '';
 
-  constructor(private router: Router, private auth: AuthService, private api: ApiService, private userService: UserService) { }
+  constructor(private router: Router, private auth: AuthService, private userService: UserService) { }
 
   ngOnInit(): void {
     const token = localStorage.getItem('token');
