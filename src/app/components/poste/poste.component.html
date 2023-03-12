@@ -12,8 +12,8 @@
                 <thead>
                     <tr>
                         <!-- <th>Id</th>-->
-                        <th>Numéro</th>
-                        <th>Utilisateur ID</th>
+                        <th>Numéro du poste</th>
+                        <th>Matricule d'utilisateur</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -21,7 +21,7 @@
                     <tr *ngFor="let poste of postes">
                         <!-- <td>{{ poste.id }}</td>-->
                         <td>{{ poste['numéro'] }}</td>
-                        <td>{{ poste.utilisateurId }}</td>
+                        <td>{{ getUtilisateurNom(poste.utilisateurId) }}</td>
                         <td>
                             <button class="btn btn-primary" (click)="editPoste(poste)">Modifier</button>
                             <button class="btn btn-danger" (click)="deletePoste(poste)"
@@ -42,13 +42,15 @@
                 <div class="card-body">
                     <form #f="ngForm" (ngSubmit)="addPoste(f.value)">
                         <div class="form-group">
-                            <label for="numéro">Numéro</label>
+                            <label for="numéro">Numéro du poste</label>
                             <input type="number" class="form-control" id="numéro" name="numéro" ngModel required>
                         </div>
                         <div class="form-group">
-                            <label for="utilisateurId">Utilisateur ID</label>
-                            <input type="number" class="form-control" id="utilisateurId" name="utilisateurId" ngModel
-                                required>
+                            <label for="utilisateurId">Matricule d'utilisateur</label>
+                            <select class="form-control" id="utilisateurId" name="utilisateurId" ngModel required>
+                                <option *ngFor="let utilisateur of utilisateurs" [value]="utilisateur.id">
+                                    {{utilisateur.matricule}}</option>
+                            </select>
                         </div>
                         <div style="margin-top: 10px;">
                             <button type="submit" class="btn btn-success" [disabled]="!f.valid">Enregistrer</button>
@@ -76,8 +78,11 @@
                         </div>
                         <div class="form-group">
                             <label for="utilisateurId">Utilisateur ID</label>
-                            <input type="number" class="form-control" id="utilisateurId" name="utilisateurId"
+                            <select class="form-control" id="utilisateurId" name="utilisateurId"
                                 [(ngModel)]="poste.utilisateurId" required>
+                                <option *ngFor="let utilisateur of utilisateurs" [value]="utilisateur.id">
+                                    {{utilisateur.matricule}}</option>
+                            </select>
                         </div>
                         <div style="margin-top: 10px;">
                             <button type="submit" class="btn btn-success" [disabled]="!f.valid">Enregistrer</button>

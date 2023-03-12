@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Poste } from 'src/app/models/poste.model';
+import { Utilisateur } from 'src/app/models/utilisateur.model';
 import { PosteService } from 'src/app/services/poste.service';
+import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
 @Component({
   selector: 'app-poste',
@@ -11,18 +13,25 @@ export class PosteComponent implements OnInit {
 
   postes!: Poste[];
   poste: Poste = new Poste();
+  utilisateurs: Utilisateur[] = [];
   isEditMode = false;
   isAddMode = false;
 
-  constructor(private posteService: PosteService) { }
+  constructor(private posteService: PosteService, private utilisateurService: UtilisateurService) { }
 
   ngOnInit() {
     this.getPostes();
+    this.getUtilisateurs();
   }
 
   getPostes(): void {
     this.posteService.getPostes()
       .subscribe(postes => this.postes = postes);
+  }
+
+  getUtilisateurs(): void {
+    this.utilisateurService.getUtilisateurs()
+      .subscribe(utilisateurs => this.utilisateurs = utilisateurs);
   }
 
   deletePoste(poste: Poste): void {
@@ -35,6 +44,7 @@ export class PosteComponent implements OnInit {
   }
 
   addPoste(poste: Poste): void {
+    poste.utilisateurId = parseInt(String(poste.utilisateurId), 10);
     this.posteService.addPoste(poste)
       .subscribe(poste => {
         this.postes.push(poste);
@@ -49,6 +59,7 @@ export class PosteComponent implements OnInit {
   }
 
   updatePoste(): void {
+    this.poste.utilisateurId = parseInt(String(this.poste.utilisateurId), 10);
     this.posteService.updatePoste(this.poste)
       .subscribe(() => {
         const index = this.postes.findIndex(p => p.id === this.poste.id);
@@ -66,5 +77,10 @@ export class PosteComponent implements OnInit {
   cancelEdit(): void {
     this.isEditMode = false;
     this.isAddMode = false;
+  }
+
+  getUtilisateurNom(utilisateurId: number): string {
+    const utilisateur = this.utilisateurs.find(s => s.id === utilisateurId);
+    return utilisateur ? utilisateur.matricule : '';
   }
 }
