@@ -15,5 +15,5 @@ export class Utilisateur {
     image: string = '';
     salaire: number = 0;
     posteId: number = 0;
-    departementId: number = 0;
+    départementId: number = 0;
 }

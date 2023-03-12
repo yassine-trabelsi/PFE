@@ -105,6 +105,19 @@
                     <input type="number" class="form-control" [(ngModel)]="utilisateur.salaire" name="salaire" required>
                 </div>
                 <div class="form-group">
+                    <label for="poste">Numéro du poste:</label>
+                    <select class="form-control" [(ngModel)]="utilisateur.posteId" name="posteId">
+                        <option *ngFor="let poste of postes" [value]="poste['numéro']">{{poste['numéro']}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="departement">Département:</label>
+                    <select class="form-control" [(ngModel)]="utilisateur['départementId']" name="départementId">
+                        <option *ngFor="let departement of departements" [value]="departement.id">{{ departement.nom }}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <button type="submit" class="btn btn-success">Enregistrer</button>
                     <button type="button" class="btn btn-danger ml-2" (click)="cancelEdit()">Annuler</button>
                 </div>
@@ -161,22 +174,23 @@
                 </div>
                 <div class="form-group">
                     <label for="image">Image:</label>
-                    <input type="file" class="form-control" (change)="onFileSelected($event)">
+                    <input type="file" class="form-control" (change)="onFileSelected($event)"
+                        [(ngModel)]="utilisateur.image" name="image" required>
                 </div>
                 <div class="form-group">
                     <label for="salaire">Salaire:</label>
                     <input type="number" class="form-control" [(ngModel)]="utilisateur.salaire" name="salaire" required>
                 </div>
                 <div class="form-group">
-                    <label for="poste">Poste:</label>
-                    <select class="form-control" [(ngModel)]="utilisateur.posteId" name="poste">
-                        <option *ngFor="let poste of postes" [value]="poste.id">{{poste.id}}</option>
+                    <label for="poste">Numéro du poste:</label>
+                    <select class="form-control" [(ngModel)]="utilisateur.posteId" name="posteId">
+                        <option *ngFor="let poste of postes" [value]="poste['numéro']">{{poste['numéro']}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="departement">Département:</label>
-                    <select class="form-control" [(ngModel)]="utilisateur.departementId" name="departement">
-                        <option *ngFor="let departement of departements" [value]="departement.id">{{ departement.id }}
+                    <select class="form-control" [(ngModel)]="utilisateur['départementId']" name="départementId">
+                        <option *ngFor="let departement of departements" [value]="departement.id">{{ departement.nom }}
                         </option>
                     </select>
                 </div>

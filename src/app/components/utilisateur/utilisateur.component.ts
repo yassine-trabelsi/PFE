@@ -57,9 +57,14 @@ export class UtilisateurComponent implements OnInit {
     } else {
       console.log('posteId is not a valid number');
     }
+    if (!isNaN(utilisateur.départementId) && typeof utilisateur.départementId === 'number') {
+      utilisateur.départementId = parseInt(String(utilisateur.départementId), 10);
+    } else {
+      console.log('posteId is not a valid number');
+    }
     console.log(utilisateur);
     utilisateur.posteId = parseInt(String(utilisateur.posteId), 10);
-
+    utilisateur.départementId = parseInt(String(utilisateur.départementId), 10);
     this.utilisateurService.addUtilisateur(utilisateur)
       .subscribe(utilisateur => {
         this.utilisateurs.push(utilisateur);
@@ -74,6 +79,8 @@ export class UtilisateurComponent implements OnInit {
   }
 
   updateUtilisateur(): void {
+    this.utilisateur.posteId = parseInt(String(this.utilisateur.posteId), 10);
+    this.utilisateur.départementId = parseInt(String(this.utilisateur.départementId), 10);
     this.utilisateurService.updateUtilisateur(this.utilisateur)
       .subscribe(() => {
         const index = this.utilisateurs.findIndex(p => p.id === this.utilisateur.id);
