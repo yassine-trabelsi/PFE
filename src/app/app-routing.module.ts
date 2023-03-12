@@ -1,3 +1,4 @@
+import { PosteComponent } from './components/poste/poste.component';
 import { SiteComponent } from './components/site/site.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { ResetComponent } from './components/reset/reset.component';
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'reset', component: ResetComponent },
   { path: 'site', component: SiteComponent },
-  { path: 'dept', component: DepartementComponent }
+  { path: 'dept', component: DepartementComponent },
+  { path: 'poste', component: PosteComponent }
 ];
 
 @NgModule({

@@ -1,0 +1,92 @@
+<div class="container">
+    <div class="row">
+        <h2>Liste des Postes</h2>
+        <div class="col-md-12">
+            <button class="btn btn-primary" (click)="showAddForm()">Ajouter Poste</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <!-- <th>Id</th>-->
+                        <th>Numéro</th>
+                        <th>Utilisateur ID</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let poste of postes">
+                        <!-- <td>{{ poste.id }}</td>-->
+                        <td>{{ poste['numéro'] }}</td>
+                        <td>{{ poste.utilisateurId }}</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm" (click)="editPoste(poste)">Modifier</button>
+                            <button class="btn btn-danger btn-sm" (click)="deletePoste(poste)"
+                                style="margin-left: 5px;">Supprimer</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div *ngIf="isAddMode" class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    Ajouter Poste
+                </div>
+                <div class="card-body">
+                    <form #f="ngForm" (ngSubmit)="addPoste(f.value)">
+                        <div class="form-group">
+                            <label for="numéro">Numéro</label>
+                            <input type="number" class="form-control" id="numéro" name="numéro" ngModel required>
+                        </div>
+                        <div class="form-group">
+                            <label for="utilisateurId">Utilisateur ID</label>
+                            <input type="number" class="form-control" id="utilisateurId" name="utilisateurId" ngModel
+                                required>
+                        </div>
+                        <div style="margin-top: 10px;">
+                            <button type="submit" class="btn btn-success" [disabled]="!f.valid">Enregistrer</button>
+                            <button type="button" class="btn btn-secondary ml-2" style="margin-left: 5px;"
+                                (click)="cancelEdit()">Annuler</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="isEditMode" class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    Modifier Poste
+                </div>
+                <div class="card-body">
+                    <form #f="ngForm" (ngSubmit)="updatePoste()">
+                        <div class="form-group">
+                            <label for="numéro">Numéro</label>
+                            <input type="number" class="form-control" id="numéro" name="numéro"
+                                [(ngModel)]="poste['numéro']" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="utilisateurId">Utilisateur ID</label>
+                            <input type="number" class="form-control" id="utilisateurId" name="utilisateurId"
+                                [(ngModel)]="poste.utilisateurId" required>
+                        </div>
+                        <div style="margin-top: 10px;">
+                            <button type="submit" class="btn btn-success" [disabled]="!f.valid">Enregistrer</button>
+                            <button type="button" class="btn btn-secondary ml-2" (click)="cancelEdit()"
+                                style="margin-left: 5px;">Annuler</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

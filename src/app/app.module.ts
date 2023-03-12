@@ -14,6 +14,7 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SiteComponent } from './components/site/site.component';
 import { DepartementComponent } from './components/departement/departement.component';
+import { PosteComponent } from './components/poste/poste.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { DepartementComponent } from './components/departement/departement.compo
     NavbarComponent,
     SiteComponent,
     DepartementComponent,
+    PosteComponent,
   ],
   imports: [
     BrowserModule,
