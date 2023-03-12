@@ -1,3 +1,4 @@
+import { UtilisateurComponent } from './components/utilisateur/utilisateur.component';
 import { PosteComponent } from './components/poste/poste.component';
 import { SiteComponent } from './components/site/site.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'reset', component: ResetComponent },
   { path: 'site', component: SiteComponent },
   { path: 'dept', component: DepartementComponent },
-  { path: 'poste', component: PosteComponent }
+  { path: 'poste', component: PosteComponent },
+  { path: 'utilisateur', component: UtilisateurComponent }
 ];
 
 @NgModule({

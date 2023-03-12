@@ -1,0 +1,188 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Liste des utilisateurs</h2>
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-primary" (click)="showAddForm()">Ajouter Utilisateur</button>
+                </div>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <!--<td> <th>ID</th>-->
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Matricule</th>
+                        <!--  <th>Date d'embauche</th>-->
+                        <th>Email</th>
+                        <!-- <th>Mot de passe</th>-->
+                        <th>Téléphone</th>
+                        <!-- <th>Date de naissance</th>-->
+                        <th>Rôle</th>
+                        <th>Image</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let utilisateur of utilisateurs">
+                        <!--<td><td>{{ utilisateur.id }}</td>-->
+                        <td>{{ utilisateur.nom }}</td>
+                        <td>{{ utilisateur.prenom }}</td>
+                        <td>{{ utilisateur.matricule }}</td>
+                        <!--<td>{{ utilisateur.dateEmbauche | date }}</td>-->
+                        <td>{{ utilisateur.email }}</td>
+                        <!--<td>{{ utilisateur.motDePasse }}</td>-->
+                        <td>{{ utilisateur.tel }}</td>
+                        <!--<td>{{ utilisateur.dateNaissance | date }}</td>-->
+                        <td>{{ utilisateur.role }}</td>
+                        <td><img [src]="utilisateur.image" alt="User Image" style="width: 100px; height: 100px;"></td>
+                        <td>
+                            <button class="btn btn-primary" (click)="editUtilisateur(utilisateur)">Modifier</button>
+                            <button class="btn btn-danger" (click)="deleteUtilisateur(utilisateur)"
+                                style="margin-left: 5px;">Supprimer</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div *ngIf="isEditMode" class="row">
+        <div class="col-md-6">
+            <h3>Edit Utilisateur</h3>
+            <form (ngSubmit)="updateUtilisateur()" #utilisateurForm="ngForm">
+                <input type="hidden" [(ngModel)]="utilisateur.id" name="id" required>
+                <div class="form-group">
+                    <label for="nom">Nom:</label>
+                    <input type="text" class="form-control" [(ngModel)]="utilisateur.nom" name="nom" required>
+                </div>
+                <div class="form-group">
+                    <label for="prenom">Prenom:</label>
+                    <input type="text" class="form-control" [(ngModel)]="utilisateur.prenom" name="prenom" required>
+                </div>
+                <div class="form-group">
+                    <label for="matricule">Matricule:</label>
+                    <input type="text" class="form-control" [(ngModel)]="utilisateur.matricule" name="matricule"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="dateEmbauche">Date d'embauche:</label>
+                    <input type="date" class="form-control" [(ngModel)]="utilisateur.dateEmbauche" name="dateEmbauche"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" [(ngModel)]="utilisateur.email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="motDePasse">Mot de passe:</label>
+                    <input type="password" class="form-control" [(ngModel)]="utilisateur.motDePasse" name="motDePasse"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="tel">Telephone:</label>
+                    <input type="text" class="form-control" [(ngModel)]="utilisateur.tel" name="tel" required>
+                </div>
+                <div class="form-group">
+                    <label for="dateNaissance">Date de naissance:</label>
+                    <input type="date" class="form-control" [(ngModel)]="utilisateur.dateNaissance" name="dateNaissance"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="role">Role:</label>
+                    <select class="form-control" [(ngModel)]="utilisateur.role" name="role" required>
+                        <option value="">--Choisir un role--</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Employe">Employe</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="image">Image:</label>
+                    <input type="file" (change)="onFileSelected($event)" name="image">
+                </div>
+                <div class="form-group">
+                    <label for="salaire">Salaire:</label>
+                    <input type="number" class="form-control" [(ngModel)]="utilisateur.salaire" name="salaire" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Enregistrer</button>
+                    <button type="button" class="btn btn-danger ml-2" (click)="cancelEdit()">Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div *ngIf="isAddMode" class="row">
+        <div class="col-md-6">
+            <h3>Ajouter Utilisateur</h3>
+            <form (ngSubmit)="addUtilisateur(f.value)" #f="ngForm">
+                <div class="form-group">
+                    <label for="nom">Nom:</label>
+                    <input type="text" class="form-control" [(ngModel)]="utilisateur.nom" name="nom" required>
+                </div>
+                <div class="form-group">
+                    <label for="prenom">Prenom:</label>
+                    <input type="text" class="form-control" [(ngModel)]="utilisateur.prenom" name="prenom" required>
+                </div>
+                <div class="form-group">
+                    <label for="matricule">Matricule:</label>
+                    <input type="text" class="form-control" [(ngModel)]="utilisateur.matricule" name="matricule"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="dateEmbauche">Date d'embauche:</label>
+                    <input type="date" class="form-control" [(ngModel)]="utilisateur.dateEmbauche" name="dateEmbauche"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" [(ngModel)]="utilisateur.email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="motDePasse">Mot de passe:</label>
+                    <input type="password" class="form-control" [(ngModel)]="utilisateur.motDePasse" name="motDePasse"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="tel">Téléphone:</label>
+                    <input type="text" class="form-control" [(ngModel)]="utilisateur.tel" name="tel" required>
+                </div>
+                <div class="form-group">
+                    <label for="dateNaissance">Date de naissance:</label>
+                    <input type="date" class="form-control" [(ngModel)]="utilisateur.dateNaissance" name="dateNaissance"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="role">Role:</label>
+                    <select class="form-control" [(ngModel)]="utilisateur.role" name="role" required>
+                        <option value="">--Choisir un role--</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Employe">Employe</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="image">Image:</label>
+                    <input type="file" class="form-control" (change)="onFileSelected($event)">
+                </div>
+                <div class="form-group">
+                    <label for="salaire">Salaire:</label>
+                    <input type="number" class="form-control" [(ngModel)]="utilisateur.salaire" name="salaire" required>
+                </div>
+                <div class="form-group">
+                    <label for="poste">Poste:</label>
+                    <select class="form-control" [(ngModel)]="utilisateur.posteId" name="poste">
+                        <option *ngFor="let poste of postes" [value]="poste.id">{{poste.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="departement">Département:</label>
+                    <select class="form-control" [(ngModel)]="utilisateur.departementId" name="departement">
+                        <option *ngFor="let departement of departements" [value]="departement.id">{{ departement.id }}
+                        </option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success"
+                    style="margin-bottom: 10px; margin-top: 5px;">Ajouter</button>
+            </form>
+        </div>
+    </div>
+</div>

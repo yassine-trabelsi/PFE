@@ -15,6 +15,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SiteComponent } from './components/site/site.component';
 import { DepartementComponent } from './components/departement/departement.component';
 import { PosteComponent } from './components/poste/poste.component';
+import { UtilisateurComponent } from './components/utilisateur/utilisateur.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { PosteComponent } from './components/poste/poste.component';
     SiteComponent,
     DepartementComponent,
     PosteComponent,
+    UtilisateurComponent,
   ],
   imports: [
     BrowserModule,
