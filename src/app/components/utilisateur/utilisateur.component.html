@@ -56,157 +56,181 @@
         </div>
     </div>
     <div *ngIf="isEditMode" class="row">
-        <div class="col-md-6">
-            <h3>Edit Utilisateur</h3>
-            <form (ngSubmit)="updateUtilisateur()" #utilisateurForm="ngForm">
-                <input type="hidden" [(ngModel)]="utilisateur.id" name="id" required>
-                <div class="form-group">
-                    <label for="nom">Nom:</label>
-                    <input type="text" class="form-control" [(ngModel)]="utilisateur.nom" name="nom" required>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    Modifier un Utilisateur
                 </div>
-                <div class="form-group">
-                    <label for="prenom">Prénom:</label>
-                    <input type="text" class="form-control" [(ngModel)]="utilisateur.prenom" name="prenom" required>
+                <div class="card-body">
+                    <form (ngSubmit)="updateUtilisateur()" #utilisateurForm="ngForm">
+                        <input type="hidden" [(ngModel)]="utilisateur.id" name="id" required>
+                        <div class="form-group">
+                            <label for="nom">Nom:</label>
+                            <input type="text" class="form-control" [(ngModel)]="utilisateur.nom" name="nom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="prenom">Prénom:</label>
+                            <input type="text" class="form-control" [(ngModel)]="utilisateur.prenom" name="prenom"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="matricule">Matricule:</label>
+                            <input type="text" class="form-control" [(ngModel)]="utilisateur.matricule" name="matricule"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateEmbauche">Date d'embauche:</label>
+                            <input type="date" class="form-control" [(ngModel)]="utilisateur.dateEmbauche"
+                                name="dateEmbauche" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" [(ngModel)]="utilisateur.email" name="email"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="motDePasse">Mot de passe:</label>
+                            <input type="password" class="form-control" [(ngModel)]="utilisateur.motDePasse"
+                                name="motDePasse" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tel">Téléphone:</label>
+                            <input type="text" class="form-control" [(ngModel)]="utilisateur.tel" name="tel" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateNaissance">Date de naissance:</label>
+                            <input type="date" class="form-control" [(ngModel)]="utilisateur.dateNaissance"
+                                name="dateNaissance" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="role">Rôle:</label>
+                            <select class="form-control" [(ngModel)]="utilisateur.role" name="role" required>
+                                <option value="">--Choisir un rôle--</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Employé">Employé</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="image">Image:</label>
+                            <input type="file" (change)="onFileSelected($event)" name="image">
+                        </div>
+                        <div class="form-group">
+                            <label for="salaire">Salaire:</label>
+                            <input type="number" class="form-control" [(ngModel)]="utilisateur.salaire" name="salaire"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="poste">Numéro du poste:</label>
+                            <select class="form-control" [(ngModel)]="utilisateur.posteId" name="posteId">
+                                <option *ngFor="let poste of postes" [value]="poste['numéro']">{{poste['numéro']}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="departement">Département:</label>
+                            <select class="form-control" [(ngModel)]="utilisateur['départementId']"
+                                name="départementId">
+                                <option *ngFor="let departement of departements" [value]="departement.id">{{
+                                    departement.nom }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-top: 10px; margin-bottom: 10px;">
+                            <button type="submit" class="btn btn-success">Enregistrer</button>
+                            <button type="button" class="btn btn-secondary ml-2" (click)="cancelEdit()"
+                                style="margin-left: 5px;">Annuler</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="matricule">Matricule:</label>
-                    <input type="text" class="form-control" [(ngModel)]="utilisateur.matricule" name="matricule"
-                        required>
-                </div>
-                <div class="form-group">
-                    <label for="dateEmbauche">Date d'embauche:</label>
-                    <input type="date" class="form-control" [(ngModel)]="utilisateur.dateEmbauche" name="dateEmbauche"
-                        required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" class="form-control" [(ngModel)]="utilisateur.email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="motDePasse">Mot de passe:</label>
-                    <input type="password" class="form-control" [(ngModel)]="utilisateur.motDePasse" name="motDePasse"
-                        required>
-                </div>
-                <div class="form-group">
-                    <label for="tel">Téléphone:</label>
-                    <input type="text" class="form-control" [(ngModel)]="utilisateur.tel" name="tel" required>
-                </div>
-                <div class="form-group">
-                    <label for="dateNaissance">Date de naissance:</label>
-                    <input type="date" class="form-control" [(ngModel)]="utilisateur.dateNaissance" name="dateNaissance"
-                        required>
-                </div>
-                <div class="form-group">
-                    <label for="role">Rôle:</label>
-                    <select class="form-control" [(ngModel)]="utilisateur.role" name="role" required>
-                        <option value="">--Choisir un rôle--</option>
-                        <option value="Admin">Admin</option>
-                        <option value="Employé">Employé</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="image">Image:</label>
-                    <input type="file" (change)="onFileSelected($event)" name="image">
-                </div>
-                <div class="form-group">
-                    <label for="salaire">Salaire:</label>
-                    <input type="number" class="form-control" [(ngModel)]="utilisateur.salaire" name="salaire" required>
-                </div>
-                <div class="form-group">
-                    <label for="poste">Numéro du poste:</label>
-                    <select class="form-control" [(ngModel)]="utilisateur.posteId" name="posteId">
-                        <option *ngFor="let poste of postes" [value]="poste['numéro']">{{poste['numéro']}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="departement">Département:</label>
-                    <select class="form-control" [(ngModel)]="utilisateur['départementId']" name="départementId">
-                        <option *ngFor="let departement of departements" [value]="departement.id">{{ departement.nom }}
-                        </option>
-                    </select>
-                </div>
-                <div class="form-group" style="margin-top: 10px; margin-bottom: 10px;">
-                    <button type="submit" class="btn btn-success">Enregistrer</button>
-                    <button type="button" class="btn btn-secondary ml-2" (click)="cancelEdit()"
-                        style="margin-left: 5px;">Annuler</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
     <div *ngIf="isAddMode" class="row">
-        <div class="col-md-6">
-            <h3>Ajouter Utilisateur</h3>
-            <form (ngSubmit)="addUtilisateur(f.value)" #f="ngForm">
-                <div class="form-group">
-                    <label for="nom">Nom:</label>
-                    <input type="text" class="form-control" [(ngModel)]="utilisateur.nom" name="nom" required>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    Ajouter un Utilisateur
                 </div>
-                <div class="form-group">
-                    <label for="prenom">Prénom:</label>
-                    <input type="text" class="form-control" [(ngModel)]="utilisateur.prenom" name="prenom" required>
+                <div class="card-body">
+                    <form (ngSubmit)="addUtilisateur(f.value)" #f="ngForm">
+                        <div class="form-group">
+                            <label for="nom">Nom:</label>
+                            <input type="text" class="form-control" [(ngModel)]="utilisateur.nom" name="nom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="prenom">Prénom:</label>
+                            <input type="text" class="form-control" [(ngModel)]="utilisateur.prenom" name="prenom"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="matricule">Matricule:</label>
+                            <input type="text" class="form-control" [(ngModel)]="utilisateur.matricule" name="matricule"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateEmbauche">Date d'embauche:</label>
+                            <input type="date" class="form-control" [(ngModel)]="utilisateur.dateEmbauche"
+                                name="dateEmbauche" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" [(ngModel)]="utilisateur.email" name="email"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="motDePasse">Mot de passe:</label>
+                            <input type="password" class="form-control" [(ngModel)]="utilisateur.motDePasse"
+                                name="motDePasse" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tel">Téléphone:</label>
+                            <input type="text" class="form-control" [(ngModel)]="utilisateur.tel" name="tel" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateNaissance">Date de naissance:</label>
+                            <input type="date" class="form-control" [(ngModel)]="utilisateur.dateNaissance"
+                                name="dateNaissance" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="role">Rôle:</label>
+                            <select class="form-control" [(ngModel)]="utilisateur.role" name="role" required>
+                                <option value="">--Choisir un rôle--</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Employé">Employé</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="image">Image:</label>
+                            <input type="file" class="form-control" (change)="onFileSelected($event)"
+                                [(ngModel)]="utilisateur.image" name="image" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="salaire">Salaire:</label>
+                            <input type="number" class="form-control" [(ngModel)]="utilisateur.salaire" name="salaire"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="poste">Numéro du poste:</label>
+                            <select class="form-control" [(ngModel)]="utilisateur.posteId" name="posteId">
+                                <option *ngFor="let poste of postes" [value]="poste['numéro']">{{poste['numéro']}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="departement">Département:</label>
+                            <select class="form-control" [(ngModel)]="utilisateur['départementId']"
+                                name="départementId">
+                                <option *ngFor="let departement of departements" [value]="departement.id">{{
+                                    departement.nom }}
+                                </option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-success"
+                            style="margin-bottom: 10px; margin-top: 5px;">Ajouter</button>
+                        <button class="btn btn-secondary ml-2" (click)="cancelEdit()"
+                            style="margin-left: 5px;">Annuler</button>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="matricule">Matricule:</label>
-                    <input type="text" class="form-control" [(ngModel)]="utilisateur.matricule" name="matricule"
-                        required>
-                </div>
-                <div class="form-group">
-                    <label for="dateEmbauche">Date d'embauche:</label>
-                    <input type="date" class="form-control" [(ngModel)]="utilisateur.dateEmbauche" name="dateEmbauche"
-                        required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" class="form-control" [(ngModel)]="utilisateur.email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="motDePasse">Mot de passe:</label>
-                    <input type="password" class="form-control" [(ngModel)]="utilisateur.motDePasse" name="motDePasse"
-                        required>
-                </div>
-                <div class="form-group">
-                    <label for="tel">Téléphone:</label>
-                    <input type="text" class="form-control" [(ngModel)]="utilisateur.tel" name="tel" required>
-                </div>
-                <div class="form-group">
-                    <label for="dateNaissance">Date de naissance:</label>
-                    <input type="date" class="form-control" [(ngModel)]="utilisateur.dateNaissance" name="dateNaissance"
-                        required>
-                </div>
-                <div class="form-group">
-                    <label for="role">Rôle:</label>
-                    <select class="form-control" [(ngModel)]="utilisateur.role" name="role" required>
-                        <option value="">--Choisir un rôle--</option>
-                        <option value="Admin">Admin</option>
-                        <option value="Employé">Employé</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="image">Image:</label>
-                    <input type="file" class="form-control" (change)="onFileSelected($event)"
-                        [(ngModel)]="utilisateur.image" name="image" required>
-                </div>
-                <div class="form-group">
-                    <label for="salaire">Salaire:</label>
-                    <input type="number" class="form-control" [(ngModel)]="utilisateur.salaire" name="salaire" required>
-                </div>
-                <div class="form-group">
-                    <label for="poste">Numéro du poste:</label>
-                    <select class="form-control" [(ngModel)]="utilisateur.posteId" name="posteId">
-                        <option *ngFor="let poste of postes" [value]="poste['numéro']">{{poste['numéro']}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="departement">Département:</label>
-                    <select class="form-control" [(ngModel)]="utilisateur['départementId']" name="départementId">
-                        <option *ngFor="let departement of departements" [value]="departement.id">{{ departement.nom }}
-                        </option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-success"
-                    style="margin-bottom: 10px; margin-top: 5px;">Ajouter</button>
-                <button class="btn btn-secondary ml-2" (click)="cancelEdit()" style="margin-left: 5px;">Annuler</button>
-            </form>
+            </div>
         </div>
     </div>
-</div>

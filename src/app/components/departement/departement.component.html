@@ -41,7 +41,7 @@
         <div *ngIf="isAddMode" class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <h2>Ajouter un Département</h2>
+                    <div class="card-header">Ajouter un Département</div>
                     <div class="card-body">
                         <form #f="ngForm" (ngSubmit)="addDepartement(f.value)">
                             <div class="form-group">
@@ -71,7 +71,7 @@
         <div *ngIf="isEditMode" class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <h2>Modifier un Département</h2>
+                    <div class="card-header">Modifier un Département</div>
                     <div class="card-body">
                         <form #f="ngForm" (ngSubmit)="updateDepartement()">
                             <div class="form-group">
