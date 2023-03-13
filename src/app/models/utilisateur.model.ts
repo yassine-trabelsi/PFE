@@ -16,4 +16,5 @@ export class Utilisateur {
     salaire: number = 0;
     posteId: number = 0;
     départementId: number = 0;
+    supprimé: boolean = false;
 }

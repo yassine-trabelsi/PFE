@@ -31,10 +31,11 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <p class="modal-title" id="exampleModalLabel"> <span style="font-size: 25px; font-weight: 700">Mot
+                    <p class="modal-title" id="exampleModalLabel"> <span
+                            style="font-size: 25px; font-weight: 700; color: #007bff;">Mot
                             de
                             passe oublié ?</span> <br>
-                        <small>Réinitialisez votre mot de passe :</small>
+                        <small style="color: #007bff;">Réinitialisez votre mot de passe :</small>
                     </p>
 
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -42,7 +43,8 @@
                 <div class="modal-body">
                     <div class="form-group pt-3">
                         <div class="input-field"><span class="fa fa-user p-2"></span><input
-                                [(ngModel)]="resetPasswordEmail" type="text" placeholder="E-mail">
+                                [(ngModel)]="resetPasswordEmail" type="text" placeholder="E-mail" style="border: 2px solid #ccc;
+                                border-radius: 5px;">
                         </div>
                     </div>
                 </div>
@@ -50,7 +52,7 @@
                     <button id="closeBtn" type="button" class="btn btn-secondary"
                         data-bs-dismiss="modal">Fermer</button>
                     <button type="button" (click)="confirmToSend()" class="btn"
-                        style="background-color:#51BAEC; color: white;">Envoyer</button>
+                        style="background-color:#007bff; color: white;">Envoyer</button>
                 </div>
             </div>
         </div>

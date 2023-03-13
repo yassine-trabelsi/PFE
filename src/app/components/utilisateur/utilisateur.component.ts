@@ -31,7 +31,9 @@ export class UtilisateurComponent implements OnInit {
 
   getUtilisateurs(): void {
     this.utilisateurService.getUtilisateurs()
-      .subscribe(utilisateurs => this.utilisateurs = utilisateurs);
+      .subscribe(utilisateurs => {
+        this.utilisateurs = utilisateurs.filter(utilisateur => !utilisateur.supprimé);
+      });
   }
 
   getDepartements(): void {
