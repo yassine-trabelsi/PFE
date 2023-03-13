@@ -17,6 +17,7 @@ import { DepartementComponent } from './components/departement/departement.compo
 import { PosteComponent } from './components/poste/poste.component';
 import { UtilisateurComponent } from './components/utilisateur/utilisateur.component';
 import { FilterPipe } from './filter.pipe';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { FilterPipe } from './filter.pipe';
     PosteComponent,
     UtilisateurComponent,
     FilterPipe,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

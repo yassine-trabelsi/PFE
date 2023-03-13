@@ -1,3 +1,4 @@
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UtilisateurComponent } from './components/utilisateur/utilisateur.component';
 import { PosteComponent } from './components/poste/poste.component';
 import { SiteComponent } from './components/site/site.component';
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'site', component: SiteComponent },
   { path: 'dept', component: DepartementComponent },
   { path: 'poste', component: PosteComponent },
-  { path: 'utilisateur', component: UtilisateurComponent }
+  { path: 'utilisateur', component: UtilisateurComponent },
+  { path: 'dashboard', component: DashboardComponent }
 ];
 
 @NgModule({

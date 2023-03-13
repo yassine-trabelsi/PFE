@@ -1,4 +1,5 @@
-<div class="container">
+<app-dashboard></app-dashboard>
+<div class="container" style="width: 850px;">
     <div class="row">
         <h2>Liste des Départements</h2>
         <div class="row">
@@ -38,53 +39,65 @@
             </tbody>
         </table>
         <div *ngIf="isAddMode" class="row">
-            <h2>Ajouter un Département</h2>
-            <form #f="ngForm" (ngSubmit)="addDepartement(f.value)">
-                <div class="form-group">
-                    <label for="nom">Nom</label>
-                    <input type="text" class="form-control" id="nom" name="nom" ngModel required>
+            <div class="col-md-12">
+                <div class="card">
+                    <h2>Ajouter un Département</h2>
+                    <div class="card-body">
+                        <form #f="ngForm" (ngSubmit)="addDepartement(f.value)">
+                            <div class="form-group">
+                                <label for="nom">Nom</label>
+                                <input type="text" class="form-control" id="nom" name="nom" ngModel required>
+                            </div>
+                            <div class="form-group">
+                                <label for="chefD">Chef de département</label>
+                                <input type="text" class="form-control" id="chefD" name="chefD" ngModel required>
+                            </div>
+                            <div class="form-group">
+                                <label for="site">Site</label>
+                                <select class="form-control" id="site" name="siteId" ngModel required>
+                                    <option *ngFor="let site of sites" [value]="site.id">{{site.site}}</option>
+                                </select>
+                            </div>
+                            <div style="margin-top: 10px;">
+                                <button type="submit" class="btn btn-success" [disabled]="!f.valid">Ajouter</button>
+                                <button type="button" class="btn btn-secondary ml-2" (click)="cancelEdit()"
+                                    style="margin-left: 5px;">Annuler</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="chefD">Chef de département</label>
-                    <input type="text" class="form-control" id="chefD" name="chefD" ngModel required>
-                </div>
-                <div class="form-group">
-                    <label for="site">Site</label>
-                    <select class="form-control" id="site" name="siteId" ngModel required>
-                        <option *ngFor="let site of sites" [value]="site.id">{{site.site}}</option>
-                    </select>
-                </div>
-                <div style="margin-top: 10px;">
-                    <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Enregistrer</button>
-                    <button type="button" class="btn btn-default" (click)="cancelEdit()"
-                        style="margin-left: 5px;">Annuler</button>
-                </div>
-            </form>
+            </div>
         </div>
         <div *ngIf="isEditMode" class="row">
-            <h2>Modifier un Département</h2>
-            <form #f="ngForm" (ngSubmit)="updateDepartement()">
-                <div class="form-group">
-                    <label for="nom">Nom</label>
-                    <input type="text" class="form-control" id="nom" name="nom" [(ngModel)]="departement.nom" required>
+            <div class="col-md-12">
+                <div class="card">
+                    <h2>Modifier un Département</h2>
+                    <div class="card-body">
+                        <form #f="ngForm" (ngSubmit)="updateDepartement()">
+                            <div class="form-group">
+                                <label for="nom">Nom</label>
+                                <input type="text" class="form-control" id="nom" name="nom"
+                                    [(ngModel)]="departement.nom" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="chefD">Chef de département</label>
+                                <input type="text" class="form-control" id="chefD" name="chefD"
+                                    [(ngModel)]="departement.chefD" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="site">Site</label>
+                                <select class="form-control" id="site" name="siteId" [(ngModel)]="departement.siteId"
+                                    required>
+                                    <option *ngFor="let site of sites" [value]="site.id">{{site.site}}</option>
+                                </select>
+                            </div>
+                            <div style="margin-top: 10px;">
+                                <button type="submit" class="btn btn-success" [disabled]="!f.valid">Enregistrer</button>
+                                <button type="button" class="btn btn-secondary ml-2" (click)="cancelEdit()"
+                                    style="margin-left: 5px;">Annuler</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="chefD">Chef de département</label>
-                    <input type="text" class="form-control" id="chefD" name="chefD" [(ngModel)]="departement.chefD"
-                        required>
-                </div>
-                <div class="form-group">
-                    <label for="site">Site</label>
-                    <select class="form-control" id="site" name="siteId" [(ngModel)]="departement.siteId" required>
-                        <option *ngFor="let site of sites" [value]="site.id">{{site.site}}</option>
-                    </select>
-                </div>
-                <div style="margin-top: 10px;">
-                    <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Enregistrer</button>
-                    <button type="button" class="btn btn-default" (click)="cancelEdit()"
-                        style="margin-left: 5px;">Annuler</button>
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
-</div>
