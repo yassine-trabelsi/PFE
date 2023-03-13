@@ -13,13 +13,7 @@ export class EditProfileComponent implements OnInit {
 
   profileForm!: FormGroup;
   id!: number;
-  public users: any = [];
-  private jwtHelper = new JwtHelperService();
-  public prenom: string = '';
-  public matricule: string = '';
-  public tel: string = '';
-  public role: string = '';
-  public email: string = '';
+  user: any;
 
   constructor(
     private fb: FormBuilder,
@@ -31,55 +25,40 @@ export class EditProfileComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.id = Number(params.get('id'));
+    });
 
-      this.profileForm = this.fb.group({
-        nom: ['', Validators.required],
-        prenom: ['', Validators.required],
-        email: ['', [Validators.required, Validators.email]],
-        motDePasse: ['', Validators.required],
-        matricule: ['', Validators.required],
-        tel: ['', Validators.required],
-        role: ['', Validators.required],
-      });
-
-      this.userService.getUser(this.id).subscribe(data => {
-        this.profileForm.setValue({
-          nom: data.nom,
-          prenom: data.prenom,
-          email: data.email,
-          motDePasse: data.motDePasse,
-          matricule: data.matricule,
-          tel: data.tel,
-          role: data.role,
-        });
+    this.userService.getProfile(this.id).subscribe((data: any) => {
+      this.user = data;
+      this.profileForm.patchValue({
+        nom: this.user.nom,
+        prenom: this.user.prenom,
+        matricule: this.user.matricule,
+        email: this.user.email,
+        motDePasse: this.user.motDePasse,
+        tel: this.user.tel,
+        image: this.user.image
       });
     });
 
-    const token = localStorage.getItem('token');
-    if (token) {
-      const decodedToken = this.jwtHelper.decodeToken(token);
-      this.id = decodedToken.nameid;
-      this.prenom = decodedToken.unique_name;
-      this.matricule = decodedToken.family_name;
-      this.tel = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/mobilephone'];
-      this.role = decodedToken.role;
-      this.email = decodedToken.email;
-    }
+    this.profileForm = this.fb.group({
+      nom: ['', [Validators.required]],
+      prenom: ['', [Validators.required]],
+      matricule: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      motDePasse: ['', [Validators.required, Validators.minLength(6)]],
+      tel: ['', [Validators.required, Validators.minLength(10)]],
+      image: ['', [Validators.required]]
+    });
+  }
+
+  onSubmit() {
+    this.userService.editProfile(this.id, this.profileForm.value)
+      .subscribe(() => {
+        window.location.reload();
+      });
   }
 
   home() {
     this.router.navigate(['/home']);
-  }
-
-  onSubmit(): void {
-    this.userService.editUser(this.id, this.profileForm.value).subscribe(
-      res => {
-        alert('Profile updated successfully');
-        this.router.navigate(['/profile', this.id]);
-      },
-      error => {
-        console.log(error);
-      }
-    );
   }
 }

@@ -34,5 +34,4 @@ export class NavbarComponent implements OnInit {
   editProfile() {
     this.router.navigate(['/profile', this.id]);
   }
-
 }
