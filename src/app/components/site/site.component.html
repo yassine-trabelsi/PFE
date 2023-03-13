@@ -14,7 +14,7 @@
         </div>
         <table class="table table-striped">
             <thead>
-                <tr>
+                <tr style="text-align: center;">
                     <!-- <th>ID</th> -->
                     <th>Site</th>
                     <th>Adresse</th>
@@ -24,7 +24,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let site of sites | filter:searchText:['site', 'adresse', 'tel', 'fax']">
+                <tr *ngFor="let site of sites | filter:searchText:['site', 'adresse', 'tel', 'fax']"
+                    style="text-align: center;">
                     <!--  <td>{{site.id}}</td> -->
                     <td>{{site.site}}</td>
                     <td>{{site.adresse}}</td>

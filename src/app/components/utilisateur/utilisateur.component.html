@@ -15,7 +15,7 @@
             </div>
             <table class="table table-striped">
                 <thead>
-                    <tr>
+                    <tr style="text-align: center;">
                         <!--<td> <th>ID</th>-->
                         <th>Nom</th>
                         <th>Prénom</th>
@@ -31,8 +31,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr
-                        *ngFor="let utilisateur of utilisateurs | filter:searchText:['nom', 'prenom', 'matricule', 'email', 'tel', 'role']">
+                    <tr *ngFor="let utilisateur of utilisateurs | filter:searchText:['nom', 'prenom', 'matricule', 'email', 'tel', 'role']"
+                        style="text-align: center;">
                         <!--<td><td>{{ utilisateur.id }}</td>-->
                         <td>{{ utilisateur.nom }}</td>
                         <td>{{ utilisateur.prenom }}</td>
@@ -100,7 +100,7 @@
                     <select class="form-control" [(ngModel)]="utilisateur.role" name="role" required>
                         <option value="">--Choisir un rôle--</option>
                         <option value="Admin">Admin</option>
-                        <option value="Employe">Employé</option>
+                        <option value="Employé">Employé</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -177,7 +177,7 @@
                     <select class="form-control" [(ngModel)]="utilisateur.role" name="role" required>
                         <option value="">--Choisir un rôle--</option>
                         <option value="Admin">Admin</option>
-                        <option value="Employe">Employé</option>
+                        <option value="Employé">Employé</option>
                     </select>
                 </div>
                 <div class="form-group">

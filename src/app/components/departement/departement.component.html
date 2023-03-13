@@ -14,7 +14,7 @@
         </div>
         <table class="table table-striped">
             <thead>
-                <tr>
+                <tr style="text-align: center;">
                     <!-- <th>ID</th> -->
                     <th>Nom</th>
                     <th>Chef de département</th>
@@ -23,7 +23,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let departement of departements | filter:searchText:['nom', 'chefD']">
+                <tr *ngFor="let departement of departements | filter:searchText:['nom', 'chefD']"
+                    style="text-align: center;">
                     <!--  <td>{{departement.id}}</td> -->
                     <td>{{departement.nom}}</td>
                     <td>{{departement.chefD}}</td>
