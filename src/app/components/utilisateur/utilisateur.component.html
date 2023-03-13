@@ -4,7 +4,13 @@
             <h2>Liste des Utilisateurs</h2>
             <div class="row">
                 <div class="col-md-12 text-right">
-                    <button class="btn btn-primary" (click)="showAddForm()">Ajouter Utilisateur</button>
+                    <input type="text" [(ngModel)]="searchText" placeholder="Recherche..." style="  border: 2px solid #ccc;
+                    border-radius: 5px;
+                    padding: 10px;
+                    font-size: 14px;
+                    width: 160px;">
+                    <button class="btn btn-primary" (click)="showAddForm()" style="margin-left: 50px;">Ajouter
+                        Utilisateur</button>
                 </div>
             </div>
             <table class="table table-striped">
@@ -25,7 +31,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let utilisateur of utilisateurs">
+                    <tr
+                        *ngFor="let utilisateur of utilisateurs | filter:searchText:['nom', 'prenom', 'matricule', 'email', 'tel', 'role']">
                         <!--<td><td>{{ utilisateur.id }}</td>-->
                         <td>{{ utilisateur.nom }}</td>
                         <td>{{ utilisateur.prenom }}</td>

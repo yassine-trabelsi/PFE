@@ -16,6 +16,7 @@ import { SiteComponent } from './components/site/site.component';
 import { DepartementComponent } from './components/departement/departement.component';
 import { PosteComponent } from './components/poste/poste.component';
 import { UtilisateurComponent } from './components/utilisateur/utilisateur.component';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { UtilisateurComponent } from './components/utilisateur/utilisateur.compo
     DepartementComponent,
     PosteComponent,
     UtilisateurComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,

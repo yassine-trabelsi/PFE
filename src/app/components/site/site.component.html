@@ -3,7 +3,12 @@
         <h2>Listes des Sites</h2>
         <div class="row">
             <div class="col-md-12 text-right">
-                <button class="btn btn-primary" (click)="showAddForm()">Ajouter un
+                <input type="text" [(ngModel)]="searchText" placeholder="Recherche..." style="  border: 2px solid #ccc;
+                border-radius: 5px;
+                padding: 10px;
+                font-size: 14px;
+                width: 160px;">
+                <button class="btn btn-primary" (click)="showAddForm()" style="margin-left: 50px;">Ajouter un
                     Site</button>
             </div>
         </div>
@@ -19,7 +24,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let site of sites">
+                <tr *ngFor="let site of sites | filter:searchText:['site', 'adresse', 'tel', 'fax']">
                     <!--  <td>{{site.id}}</td> -->
                     <td>{{site.site}}</td>
                     <td>{{site.adresse}}</td>

@@ -14,6 +14,7 @@ export class SiteComponent implements OnInit {
   site: Site = new Site();
   isEditMode = false;
   isAddMode = false;
+  searchText!: string;
 
   constructor(private siteService: SiteService) { }
 

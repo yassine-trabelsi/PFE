@@ -19,6 +19,7 @@ export class UtilisateurComponent implements OnInit {
   utilisateur: Utilisateur = new Utilisateur();
   isEditMode = false;
   isAddMode = false;
+  searchText!: string;
 
   constructor(private utilisateurService: UtilisateurService, private posteService: PosteService, private departementService: DepartementService) { }
 

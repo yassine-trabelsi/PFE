@@ -17,6 +17,7 @@ export class DepartementComponent implements OnInit {
   departement: Departement = new Departement();
   isEditMode = false;
   isAddMode = false;
+  searchText!: string;
 
   constructor(private departementService: DepartementService, private siteService: SiteService) { }
 
