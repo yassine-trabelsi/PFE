@@ -1,113 +1,117 @@
 <app-dashboard></app-dashboard>
 <div class="container" style="width: 850px;">
     <div class="row">
-        <h2>Listes des Sites</h2>
-        <div class="row">
-            <div class="col-md-12 text-right">
-                <input type="text" [(ngModel)]="searchText" placeholder="Recherche..." style="  border: 2px solid #ccc;
+        <div class="col-sm-12">
+            <h2>Listes des Sites</h2>
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <input type="text" [(ngModel)]="searchText" placeholder="Recherche..." style="  border: 2px solid #ccc;
                 border-radius: 5px;
                 padding: 10px;
                 font-size: 14px;
                 width: 160px;">
-                <button class="btn btn-primary" (click)="showAddForm()" style="margin-left: 50px;">Ajouter un
-                    Site</button>
+                    <button class="btn btn-primary" (click)="showAddForm()" style="margin-left: 50px;">Ajouter un
+                        Site</button>
+                </div>
             </div>
-        </div>
-        <table class="table table-striped">
-            <thead>
-                <tr style="text-align: center;">
-                    <!-- <th>ID</th> -->
-                    <th>Site</th>
-                    <th>Adresse</th>
-                    <th>Tel</th>
-                    <th>Fax</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let site of sites | filter:searchText:['site', 'adresse', 'tel', 'fax']"
-                    style="text-align: center;">
-                    <!--  <td>{{site.id}}</td> -->
-                    <td>{{site.site}}</td>
-                    <td>{{site.adresse}}</td>
-                    <td>{{site.tel}}</td>
-                    <td>{{site.fax}}</td>
-                    <td>
-                        <button class="btn btn-primary" (click)="editSite(site)">Modifier</button>
-                        <button class="btn btn-danger" (click)="deleteSite(site)"
-                            style="margin-left: 5px;">Supprimer</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div *ngIf="isAddMode" class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        Ajouter un Site
-                    </div>
-                    <div class="card-body">
-                        <form (ngSubmit)="addSite(f.value)" #f="ngForm">
-                            <div class="form-group">
-                                <label for="site">Site</label>
-                                <input type="text" class="form-control" id="site" name="site" ngModel required>
-                            </div>
-                            <div class="form-group">
-                                <label for="adresse">Adresse</label>
-                                <input type="text" class="form-control" id="adresse" name="adresse" ngModel required>
-                            </div>
-                            <div class="form-group">
-                                <label for="tel">Tel</label>
-                                <input type="text" class="form-control" id="tel" name="tel" ngModel required>
-                            </div>
-                            <div class="form-group">
-                                <label for="fax">Fax</label>
-                                <input type="text" class="form-control" id="fax" name="fax" ngModel required>
-                            </div>
-                            <div style="margin-top: 10px;">
-                                <button type="submit" class="btn btn-success" [disabled]="!f.valid">Enregistrer</button>
-                                <button class="btn btn-secondary ml-2" (click)="cancelEdit()"
-                                    style="margin-left: 5px;">Annuler</button>
-                            </div>
-                        </form>
+            <table class="table table-striped" style="width: 1000px;">
+                <thead>
+                    <tr style="text-align: center;">
+                        <!-- <th>ID</th> -->
+                        <th>Site</th>
+                        <th>Adresse</th>
+                        <th>Tel</th>
+                        <th>Fax</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let site of sites | filter:searchText:['site', 'adresse', 'tel', 'fax']"
+                        style="text-align: center;">
+                        <!--  <td>{{site.id}}</td> -->
+                        <td>{{site.site}}</td>
+                        <td>{{site.adresse}}</td>
+                        <td>{{site.tel}}</td>
+                        <td>{{site.fax}}</td>
+                        <td>
+                            <button class="btn btn-primary" (click)="editSite(site)">Modifier</button>
+                            <button class="btn btn-danger" (click)="deleteSite(site)"
+                                style="margin-left: 5px;">Supprimer</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div *ngIf="isAddMode" class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            Ajouter un Site
+                        </div>
+                        <div class="card-body">
+                            <form (ngSubmit)="addSite(f.value)" #f="ngForm">
+                                <div class="form-group">
+                                    <label for="site">Site</label>
+                                    <input type="text" class="form-control" id="site" name="site" ngModel required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="adresse">Adresse</label>
+                                    <input type="text" class="form-control" id="adresse" name="adresse" ngModel
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tel">Tel</label>
+                                    <input type="text" class="form-control" id="tel" name="tel" ngModel required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fax">Fax</label>
+                                    <input type="text" class="form-control" id="fax" name="fax" ngModel required>
+                                </div>
+                                <div style="margin-top: 10px;">
+                                    <button type="submit" class="btn btn-success"
+                                        [disabled]="!f.valid">Enregistrer</button>
+                                    <button class="btn btn-secondary ml-2" (click)="cancelEdit()"
+                                        style="margin-left: 5px;">Annuler</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div *ngIf="isEditMode" class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        Modifier un Site
-                    </div>
-                    <div class="card-body">
-                        <form *ngIf="isEditMode" (ngSubmit)="updateSite()" #f="ngForm">
-                            <div class="form-group">
-                                <label for="site">Site</label>
-                                <input type="text" class="form-control" id="site" name="site" [(ngModel)]="site.site"
-                                    required>
-                            </div>
-                            <div class="form-group">
-                                <label for="adresse">Adresse</label>
-                                <input type="text" class="form-control" id="adresse" name="adresse"
-                                    [(ngModel)]="site.adresse" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="tel">Tel</label>
-                                <input type="text" class="form-control" id="tel" name="tel" [(ngModel)]="site.tel"
-                                    required>
-                            </div>
-                            <div class="form-group">
-                                <label for="fax">Fax</label>
-                                <input type="text" class="form-control" id="fax" name="fax" [(ngModel)]="site.fax"
-                                    required>
-                            </div>
-                            <div style="margin-top: 10px; margin-bottom: 10px;">
-                                <button type="submit" class="btn btn-success">Enregistrer</button>
-                                <button class="btn btn-secondary ml-2" (click)="cancelEdit()"
-                                    style="margin-left: 5px;">Annuler</button>
-                            </div>
-                        </form>
+            <div *ngIf="isEditMode" class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            Modifier un Site
+                        </div>
+                        <div class="card-body">
+                            <form *ngIf="isEditMode" (ngSubmit)="updateSite()" #f="ngForm">
+                                <div class="form-group">
+                                    <label for="site">Site</label>
+                                    <input type="text" class="form-control" id="site" name="site"
+                                        [(ngModel)]="site.site" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="adresse">Adresse</label>
+                                    <input type="text" class="form-control" id="adresse" name="adresse"
+                                        [(ngModel)]="site.adresse" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tel">Tel</label>
+                                    <input type="text" class="form-control" id="tel" name="tel" [(ngModel)]="site.tel"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fax">Fax</label>
+                                    <input type="text" class="form-control" id="fax" name="fax" [(ngModel)]="site.fax"
+                                        required>
+                                </div>
+                                <div style="margin-top: 10px; margin-bottom: 10px;">
+                                    <button type="submit" class="btn btn-success">Enregistrer</button>
+                                    <button class="btn btn-secondary ml-2" (click)="cancelEdit()"
+                                        style="margin-left: 5px;">Annuler</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
