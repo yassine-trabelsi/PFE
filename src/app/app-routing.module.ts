@@ -17,11 +17,11 @@ const routes: Routes = [
   { path: 'profile/:id', component: EditProfileComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'reset', component: ResetComponent },
-  { path: 'site', component: SiteComponent },
-  { path: 'dept', component: DepartementComponent },
-  { path: 'poste', component: PosteComponent },
-  { path: 'utilisateur', component: UtilisateurComponent },
-  { path: 'dashboard', component: DashboardComponent }
+  { path: 'site', component: SiteComponent, canActivate: [AuthGuard] },
+  { path: 'dept', component: DepartementComponent, canActivate: [AuthGuard] },
+  { path: 'poste', component: PosteComponent, canActivate: [AuthGuard] },
+  { path: 'utilisateur', component: UtilisateurComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

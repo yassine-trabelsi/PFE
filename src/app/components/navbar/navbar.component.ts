@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit {
   private jwtHelper = new JwtHelperService();
   private id: string = '';
   public prenom: string = '';
+  public role: string = '';
 
   constructor(private router: Router, private auth: AuthService, private userService: UserService) { }
 
@@ -24,6 +25,7 @@ export class NavbarComponent implements OnInit {
       const decodedToken = this.jwtHelper.decodeToken(token);
       this.id = decodedToken.nameid;
       this.prenom = decodedToken.unique_name;
+      this.role = decodedToken.role;
     }
   }
 
